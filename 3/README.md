@@ -11,4 +11,5 @@
 | SyntaxError: EOL while scanning string literal | Student has an unclosed string quote somewhere |
 | File "water_1.py", line 4,bottles = minutes * 12,^ SyntaxError: invalid syntax | Student has an error on line 3 such as an unclosed parantheses |
 | TypeError: 'str' object is not callable | Student forgot the `%` for print syntax |
-| python: can't open file 'water_1.py2': [Errno 2] No such file or directory | Student misspelled file name when trying to run it | IndexError: list index out of range | Student tried to access a list index that does not exist|
+| python: can't open file 'water_1.py2': [Errno 2] No such file or directory | Student misspelled file name when trying to run it | 
+IndexError: list index out of range | Student tried to access a list index that does not exist|
