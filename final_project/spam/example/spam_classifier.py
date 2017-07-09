@@ -8,59 +8,95 @@ import nltk.classify.util
 from nltk.classify import NaiveBayesClassifier
 from nltk.tokenize import word_tokenize
 import random
+import time
 import os
 
 from email_getter import get_emails
-
-rootdir = '/Users/noahputnam/hsadev/summer-bootcamp/final_project/spam/example/corpus'
-
+import bootcamp
 
 # feeds a list of words into a dict where all the values map to True (important for NaiveBayesClassifier)
 def cast_todict(words):
-  return_dict = {}
-  for word in words:
-    return_dict[word] = True
+    return dict( [ (word, True) for word in words] )
 
-  return return_dict
+# clears the terminal screen using escape sequence
+def clear():
+  os.system("printf '\033c'")
 
+# loads the data in from the corpus/ dir into our classifier
 def load_data():
-  ham_list = []
-  spam_list = []
+  ham_emails = []
+  spam_emails = []
+  dircount = 0
+  filecount = 0
+  num_dirs = 285
 
-  for directories, subdirs, files in os.walk(rootdir):
-    if (os.path.split(directories)[1]  == 'ham'):
+  walkdir = os.path.abspath('corpus/')
+  for root, subdirs, files in os.walk(walkdir):
+    clear()
+    print('gathering training data...\nprocessed %i/%i directories, %i files' % (dircount, num_dirs, filecount)),
+    if 'ham' in os.path.abspath(root):
       for filename in files:      
-        with open(os.path.join(directories, filename), encoding='latin-1') as f:
+        filecount += 1
+        with open(os.path.join(root, filename), encoding='latin-1') as f:
           ham = f.read()
           words = word_tokenize(ham)
-          ham_list.append((cast_todict(words), 'ham'))
+          ham_emails.append((cast_todict(words), 'ham'))
 
-    if (os.path.split(directories)[1]  == 'spam'):
+    if 'spam' in os.path.abspath(root):
       for filename in files:
-        with open(os.path.join(directories, filename), encoding='latin-1') as f:
+        filecount += 1
+        with open(os.path.join(root, filename), encoding='latin-1') as f:
           spam = f.read()
           words = word_tokenize(spam)
-          spam_list.append((cast_todict(words), 'spam'))
+          spam_emails.append((cast_todict(words), 'spam'))
 
-  return (ham_list, spam_list)
+    dircount += 1
+
+
+  return (ham_emails, spam_emails)
 
 def get_classifier():
-  ham_list, spam_list = load_data()
-  print(ham_list)
-  combined_list = ham_list + spam_list
-  # shuffle our list 
-  training_set = random.shuffle(combined_list)
+  ham_emails, spam_emails = load_data()
+  total_emails = ham_emails + spam_emails
+  print('finished gathering data')
+
+  # shuffle our list and split it up
+  random.shuffle(total_emails)
+  training_proportion = int(len(total_emails) * .7)
+  training_set = total_emails[:training_proportion]
+  test_set =  total_emails[training_proportion:]
+
+  print('creating classifier...')
   classifier = NaiveBayesClassifier.train(training_set)
+  accuracy = nltk.classify.util.accuracy(classifier, test_set)
+  print('Accuracy: ', accuracy * 100)
+  print('Most predictive words: ')
+  classifier.show_most_informative_features(20)
+
   return classifier
 
 def main():
-  emails = get_emails()
   classifier = get_classifier()
 
-  file = open('spam.txt', 'w')
+  num_emails = -1
+  while num_emails < 0:
+    num_emails = bootcamp.get_int("number of emails?")
+
+  print('gathering emails...')
+  emails = get_emails(num_emails)
+
+  print('classifying emails...')
+  spam_out = open('spam.txt', 'w')
+  ham_out = open('ham.txt', 'w')
   for email in emails:
-    if classifier.classify(email) == 'spam':
-      file.write("SPAM:" + email)
+    if email:
+      classification = classifier.classify(cast_todict(word_tokenize(email))) 
+      if classification == 'spam':
+        spam_out.write(email + '\n\n')
+      if classification == 'ham':
+        ham_out.write(email + '\n\n')
+  print('finished')
+
 
 if __name__ == '__main__':
   main()

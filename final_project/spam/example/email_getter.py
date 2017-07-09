@@ -25,7 +25,7 @@ except ImportError:
 # at ~/.credentials/gmail-python-quickstart.json
 SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'Gmail API Python Quickstart'
+APPLICATION_NAME = 'python_spam_checker'
 
 
 def get_credentials():
@@ -68,12 +68,12 @@ def clean(email_message):
    else:
     continue
 
-def get_emails():
+def get_emails(n):
   credentials = get_credentials()
   http = credentials.authorize(httplib2.Http())
   service = discovery.build('gmail', 'v1', http=http)
 
-  results = service.users().messages().list(userId='me', includeSpamTrash = True, maxResults=50).execute()
+  results = service.users().messages().list(userId='me', includeSpamTrash = True, maxResults=n).execute()
   messages = []
   for message_id in results['messages']:
     body = ''
