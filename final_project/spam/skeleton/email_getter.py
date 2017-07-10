@@ -1,6 +1,5 @@
 """
 ~~~email-getter.py~~~
-Noah Putnam
 program to fetch emails from user account inbox 
 """
 from __future__ import print_function
