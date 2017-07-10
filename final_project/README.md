@@ -6,7 +6,7 @@ Use advanced **machine learning** algorithms, through the nltk library to find a
 ### How to use this directory
 We have two example projects provided for you:
 - Spam filter, that uses the NLTK bayesian classifier to build a spam detection bot and the gmail API to classify your own mail as spam or not spam
-- SECOND TBD, poss. chatbot?
+- Sentiment analysis program that uses the twitter API to analyze tweets
 
 Each project dir has an example folder which is an implementation that we have already done and a skeleton folder which should be distributed to students interested in building their own implementation of the project.  
 
