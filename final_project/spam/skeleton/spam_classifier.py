@@ -1,6 +1,5 @@
 """
 ~~~spam-classifyer.py~~~
-Noah Putnam
 program to classify how close a give string is to spam using NLTK, pulling strings for users gmail account
 """
 
