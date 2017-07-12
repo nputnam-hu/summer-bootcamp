@@ -68,6 +68,7 @@ def get_emails(n):
   http = credentials.authorize(httplib2.Http())
   service = discovery.build('gmail', 'v1', http=http)
 
+  ## TODO correctly use 
   messages = [''] * n
   return messages
 
