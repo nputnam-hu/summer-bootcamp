@@ -2,8 +2,8 @@
 
 ## Instalation
 Run in your terminal:
-```
-$ wget https://github.com/nputnam-hu/summer-bootcamp/edit/master/final_project/spam/spam_skeleton.zip
+```bash
+$ wget https://github.com/nputnam-hu/summer-bootcamp/edit/master/final_project/spam/spam_skeleton.zip # (or just download the file via github)
 $ unzip spam_skeleton.zip
 $ rm spam_skeleton.zip
 $ mv spam_skeleton spam
@@ -54,6 +54,17 @@ Now you can feed the training part of the list to `NaiveBayesClassifier.train()`
 Once you have the `email_getter.py` code working, main should import the `get_email()` function, tokenize/format them so we can pass them into our classifier and then use the `.classify()` method to categorize the email as ham or spam.  Finally, it should write all of the ham emails to a file called `ham.txt` and all of the spam files to a file called `spam.txt`. 
 
 #### `email_getter.py`
-
+##### `get_credentials()`
+get_credentials is a function provided for you that should correctly integrate the app with the gmail API.  You shouldn't have to modify this function.
+##### `get_emails()`
+Get emails should get all of the emails from the user email account and pass them into [`clean()`](https://github.com/nputnam-hu/summer-bootcamp/tree/master/final_project/spam/skeleton#clean) to properly format them.  To do this, it is important to know that the service variable is a class with several useful methods.  You can find the documentation [here](https://developers.google.com/resources/api-libraries/documentation/gmail/v1/python/latest), but you will probably want to use the `service.users().messages().list` method to get all the mail ids, and then the `service.users().messages().get` method to get individual emails by id.  `get_emails` should ultimately return this list of email bodies, after they have been passed into clean()
+##### `clean()`
+Python has a built-in email type that is overly complicated for our purposes, we just want to strip the message body and return that.  Clean takes in an email_message (which in turn is taken from the gmail services class method) and returns the message body stripped of unwanted characters such as `\r`, `\n` and '>' that will clutter up our email files and add noise to the prediction.  The code to get the email body has been provided for you, but you will have to strip those bad characters from the body string and then return the body
+##### `main()`
+This function should be removed, it's only there to allow for easy set-up of the gmail authentication
 
 ## Resources
+- [Getting Gmail API set up](https://developers.google.com/gmail/api/quickstart/python)
+- [Gmail python SDK docs](https://developers.google.com/resources/api-libraries/documentation/gmail/v1/python/latest/)
+- [nltk Documentation](http://www.nltk.org/)
+- [Interesting paper on the subject](http://ats.cs.ut.ee/u/kt/hw/spam/spam.pdf)
