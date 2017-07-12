@@ -33,7 +33,7 @@ To get started coding, go on to the Problems section!
 ##### `load_data()`
 This function has already been started for you: it currently iterates through each file and checks if it is in the `ham` or `spam` subdirectory of the `corpus` directory, however it does nothing else!  You need to properly read the data in from the final, [tokenize](https://www.techopedia.com/definition/13698/tokenization) the emails found in the file, and then format it to correctly be read by our classifier. (hint: [this](http://www.nltk.org/api/nltk.tokenize.html) nltk module should be useful)
 
-To do this you will need to define the [`cast_todict`](https://github.com/nputnam-hu/summer-bootcamp/edit/master/final_project/spam/skeleton/README.md#cast_todict()) function and run it on our tokenized array of words. 
+To do this you will need to define the [`cast_todict`](https://github.com/nputnam-hu/summer-bootcamp/edit/master/final_project/spam/skeleton/README.md#cast_todict) function and run it on our tokenized array of words. 
 
 Finally we need to save our 
 ##### `cast_todict()`
