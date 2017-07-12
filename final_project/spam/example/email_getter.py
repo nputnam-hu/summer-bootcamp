@@ -76,7 +76,6 @@ def get_emails(n):
   results = service.users().messages().list(userId='me', includeSpamTrash = True, maxResults=n).execute()
   messages = []
   for message_id in results['messages']:
-    body = ''
     message = service.users().messages().get(userId='me', id=message_id['id'], format='raw').execute()
     msg_str = base64.urlsafe_b64decode(message['raw'].encode('ASCII'))
     mime_msg = email.message_from_bytes(msg_str)      
