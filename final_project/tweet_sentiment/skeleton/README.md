@@ -1,1 +1,0 @@
-based on [cs50 pset 6](http://docs.cs50.net/2016/fall/psets/6/pset6.html)
