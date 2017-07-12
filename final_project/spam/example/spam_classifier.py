@@ -68,10 +68,6 @@ def get_classifier():
 
   print('creating classifier...')
   classifier = NaiveBayesClassifier.train(training_set)
-  accuracy = nltk.classify.util.accuracy(classifier, test_set)
-  print('Accuracy: ', accuracy * 100)
-  print('Most predictive words: ')
-  classifier.show_most_informative_features(20)
 
   return classifier
 
