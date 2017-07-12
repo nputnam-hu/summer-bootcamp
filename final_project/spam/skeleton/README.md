@@ -7,6 +7,7 @@ $ wget https://github.com/nputnam-hu/summer-bootcamp/edit/master/final_project/s
 $ unzip spam_skeleton.zip
 $ rm spam_skeleton.zip
 $ mv spam_skeleton spam
+$ cd spam
 $ chmod a+x setup.sh
 $ ./setup.sh
 ```
@@ -28,9 +29,20 @@ In addition, we will also be using gmail's API to get the perfect test subject f
 To get started coding, go on to the Problems section!
 
 ## Problems
-##### `spam_classifier.py`
+#### `spam_classifier.py`
+##### `load_data()`
+This function has already been started for you: it currently iterates through each file and checks if it is in the `ham` or `spam` subdirectory of the `corpus` directory, however it does nothing else!  You need to properly read the data in from the final, [tokenize](https://www.techopedia.com/definition/13698/tokenization) the emails found in the file, and then format it to correctly be read by our classifier. (hint: [this](http://www.nltk.org/api/nltk.tokenize.html) nltk module should be useful)
 
-##### `email_getter.py`
+To do this you will need to define the [`cast_todict`](https://github.com/nputnam-hu/summer-bootcamp/edit/master/final_project/spam/skeleton/README.md#cast_todict()) function and run it on our tokenized array of words. 
+
+Finally we need to save our 
+##### cast_todict
+This function feeds a list of words into a dict where all the values map to True (important for NaiveBayesClassifier)
+  example input->output:
+  ['apple', 'bannana', 'carrot'] -> {'apple':True,'bannana':True,'carrot':True}
+  ['Alice', 'Alice', 'Alice', 'Bob'] -> {'Alice':True,'Bob':True}
+
+#### `email_getter.py`
 
 
 ## Resources
