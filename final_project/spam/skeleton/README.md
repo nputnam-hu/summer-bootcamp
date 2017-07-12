@@ -25,7 +25,7 @@ While initial efforts were crude, in recent years google has implemented advance
 
 In addition, we will also be using gmail's API to get the perfect test subject for our practice spam filter: our own emails (and spam emails) which will let us see how well the program stacks up against the algorithms google has running.  Remember API stands for **Aplication Programmer Interface** and is how we can communicate with other programs in our program.  In this case, we will work through the gmail API (for more info see: [Resources](https://github.com/nputnam-hu/summer-bootcamp/edit/master/final_project/spam/skeleton/README.md#Resources)) to get the content of the email message from the given gmail account and format it such that our classifier can classify it.
 
-To get started coding, go on to the Problems sections
+To get started coding, go on to the Problems section!
 
 ## Problems
 ##### `spam_classifier.py`
