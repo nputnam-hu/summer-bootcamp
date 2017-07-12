@@ -59,7 +59,8 @@ def get_credentials():
 def clean(email_message):
   for part in email_message.walk():
    if part.get_content_type() == "text/plain": # ignore attachments/html
-    pass
+      body = part.get_payload(decode=True).decode('utf-8') 
+      return body
    else:
     continue
 
