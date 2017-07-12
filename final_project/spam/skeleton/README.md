@@ -1,1 +1,36 @@
+# Summer Bootcamp Final Project: spam
 
+## Instalation
+Run in your terminal:
+```
+$ wget https://github.com/nputnam-hu/summer-bootcamp/edit/master/final_project/spam/spam_skeleton.zip
+$ unzip spam_skeleton.zip
+$ rm spam_skeleton.zip
+$ mv spam_skeleton spam
+$ chmod a+x setup.sh
+$ ./setup.sh
+```
+This will install all of the dependices you need and download the training data for you in the corpus/ directory
+
+Next, go to [this guide made by google](https://developers.google.com/gmail/api/quickstart/python) and go through step 1 _only_.  This will get your gmail account linked together with the app. Once you have have the client_secret.json in the spam/ directory, run in your terminal:
+```
+$ python email_getter.py
+```
+This should open up a google window that will let you enter in your login credentials and authorize your app.  If not, it should happen the first time you try to use the app with the code you have written.
+
+## Motivation
+**Email** spam, also known as **junk email**, is a type of electronic spam where unsolicited messages are sent by email.  Essentially since email existed, so did spam, and with spam often came offensive content, scams, and malware.  As a result, significant effort has been put in by email companies such as Google to algorithmically detect spam and filter it away from user's regular inboxes.
+
+While initial efforts were crude, in recent years google has implemented advanced machine learning algorithms that use statistical methods and raw computing power to algorithmically detect spam email with a high degree of precision.  Using the python module, `nltk`, we can attempt ourselves to build a machine-learning-based program to determine if a given email message is spam or not by _training_ on the data provided for you in the corpus directory.  If you look inside you'll see two directories: spam, which is self-explanatory, and ham, which is the industry jargon for non-spam email that should go to the user.  Inside each of those directories are hundreds of thousands of examples of each type of email, taking from the company Enron between 2001 and 2004.  We will have to read all of this data correctly into python and then feed it into our **classifier** which will then be able to, given an email try to guess whether it's spam or ham.
+
+In addition, we will also be using gmail's API to get the perfect test subject for our practice spam filter: our own emails (and spam emails) which will let us see how well the program stacks up against the algorithms google has running.  Remember API stands for **Aplication Programmer Interface** and is how we can communicate with other programs in our program.  In this case, we will work through the gmail API (for more info see: [Resources](https://github.com/nputnam-hu/summer-bootcamp/edit/master/final_project/spam/skeleton/README.md#Resources)) to get the content of the email message from the given gmail account and format it such that our classifier can classify it.
+
+To get started coding, go on to the Problems sections
+
+## Problems
+##### `spam_classifier.py`
+
+##### `email_getter.py`
+
+
+## Resources
