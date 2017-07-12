@@ -36,7 +36,7 @@ This function has already been started for you: it currently iterates through ea
 To do this you will need to define the [`cast_todict`](https://github.com/nputnam-hu/summer-bootcamp/edit/master/final_project/spam/skeleton/README.md#cast_todict()) function and run it on our tokenized array of words. 
 
 Finally we need to save our 
-##### cast_todict
+##### `cast_todict()`
 This function feeds a list of words into a dict where all the values map to True (important for NaiveBayesClassifier)
   example input->output:
   ['apple', 'bannana', 'carrot'] -> {'apple':True,'bannana':True,'carrot':True}
